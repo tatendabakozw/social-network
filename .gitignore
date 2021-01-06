@@ -2,15 +2,15 @@
 
 # dependencies
 /node_modules
-/discord-clone/node_modules
+/frontend/node_modules
 /.pnp
 .pnp.js
 
 # testing
-/discord-clone/coverage
+/frontend/coverage
 
 # production
-/discord-clone/build
+/frontend/build
 
 # misc
 .DS_Store
