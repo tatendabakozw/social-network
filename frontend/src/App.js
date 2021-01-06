@@ -4,17 +4,18 @@ import './App.css';
 import Login from './Pages/Login/Login';
 import { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { login,logout,selectUser } from './features/userSlice';
-import Sidebar from './Components/Sidebar';
-import Chat from './Components/Chat';
-import firebase  from 'firebase'
-// import cookies from 'js-cookies'
+import { login, logout, selectUser } from './features/userSlice';
+import Sidebar from './Components/Sidebar/Sidebar';
+import Chat from './Components/Chat/Chat';
+import firebase from 'firebase'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Home from './Pages/Home';
+import Status from './Pages/Status/Status';
 
 function App() {
 
   const user = useSelector(selectUser)
   const dispatch = useDispatch()
-
   //auth using fireabse
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -23,38 +24,31 @@ function App() {
         //user is logged in
         dispatch(
           login({
-          uid: authUser.uid,
-          photo: authUser.photoURL,
-          email: authUser.email, 
-          displayName: authUser.displayName
-        })
+            uid: authUser.uid,
+            photo: authUser.photoURL,
+            email: authUser.email,
+            displayName: authUser.displayName
+          })
         );
-        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-          // Send token to your backend via HTTPS
-          // ...
-        }).catch(function(error) {
-          console.log(error.message)
-        });
       } else {
         //user is not logged in
         dispatch(logout())
       }
     })
-  },[dispatch])
+  }, [dispatch])
   //using bem naming convenstion
   return (
     //using react router  dom for routes
-    <div className="App">
-      {user? (
-        <>
-            {/* sidebar component */}
-            <Sidebar />
-
-            {/* the chat componets */}
-            <Chat />
-        </>
-      ):(<Login/>)}
-    </div>
+    <BrowserRouter>
+      {user ? (
+        <div className="App">
+          <Switch>
+            <Route path='/status' component={Status}/>
+            <Route exact path='/' component={Home}/>
+          </Switch>
+        </div>
+      ) : (<Login />)}
+    </BrowserRouter>
 
   );
 }
