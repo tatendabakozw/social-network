@@ -1,0 +1,24 @@
+.sidebarChannel{
+    display: flex;
+    padding: 0px 5px;
+    align-items: center;
+}
+.sidebarChannel:hover > h5{
+    color: white;
+    /* background-color: #40464b; */
+}
+.sidebarChannel > h5{
+    display: flex;
+    padding-left: 15px;
+    align-items: center;
+    background-color: #2f3135;
+    color: gray;
+    cursor: pointer;
+}
+.sidebarChannel__hash{
+    font-size: 30px;
+    padding: 3px;
+}
+.sidebarchannel__spacer{
+    flex: 1;
+}
