@@ -1,0 +1,9 @@
+.notification{
+    display: flex;
+    flex-direction: column;
+    flex: 0.80;
+    background-color: #363a3f;
+    height: 100%;
+    min-height: 100vh;
+    position: unset; 
+}

@@ -1,0 +1,82 @@
+.chat{
+    display: flex;
+    flex-direction: column;
+    flex: 0.80;
+    background-color: #363a3f;
+    height: 100%;
+    min-height: 100vh;
+    position: unset;
+    min-width: 80%;
+}
+.chat__body{
+    display: flex;
+}
+.chat__bodyLeft{
+    flex: 0.8;
+}
+.chat__bodyRight{
+    flex: 0.2;
+    background-color: #2f3135;
+    z-index: 100%;
+    position: sticky;
+}
+.chat__input{
+    color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 15px;
+    border-radius: 5px;
+    margin: 20px;
+    border-top: 1px solid gray;
+    background-color: #474b53;
+    position: sticky;
+    bottom: 0;
+    z-index: 100%;
+}
+.chat__input > form > input{
+    padding: 15px;
+    background: transparent;
+    outline-width: 0;
+    border: none;
+    color: white;
+    width: 100% ;
+    font-size: large;
+}
+.chat__input > form{
+    flex: 1;
+}
+.chat__inputButton{
+    display: none;
+}
+.chat__messages{
+    flex: 1;
+}
+.chat__inputIcons > .MuiSvgIcon-root{
+    padding: 5px;
+    position: inherit;
+}
+
+/* mobile styles */
+.mobile__footer{
+    background-color: #2f3135;
+    display: flex;
+    position: sticky;
+    bottom: 0%;
+    z-index: 1;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 2rem;
+}
+@media screen and (max-width: 767px) {
+    .chat {
+        flex:1;
+    }
+}
+  
+  /* On screens that are 600px or less, set the background color to olive */
+  /* @media screen and (max-width: 600px) {
+    body {
+      background-color: olive;
+    }
+  } */
