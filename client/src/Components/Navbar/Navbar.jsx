@@ -12,6 +12,7 @@ import HelpIcon from '@material-ui/icons/Help';
 import logo from '../../Images/logo.png'
 import { useStateValue } from "../../Context/StateProvider";
 import Popper from "popper.js";
+import axios from "axios";
 
 
 export default function Navbar({ fixed }) {
@@ -27,7 +28,7 @@ export default function Navbar({ fixed }) {
 const UnAuthenticatedNavbar = () => {
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     return (
-        <nav className="relative flex sticky top-0 flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-gray-600">
+        <nav className="relative flex sticky top-0 flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-gray-800">
             <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
                 <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     <Link to='/'
@@ -78,7 +79,7 @@ const UnAuthenticatedNavbar = () => {
 const AuthenticatedNabar = () => {
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     return (
-        <nav className="relative flex sticky top-0 flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-gray-600">
+        <nav className="flex z-100 sticky top-0 shadow flex-wrap md:sticky items-center justify-between px-2 py-3 navbar-expand-lg bg-gray-800">
             <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
                 <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     <Link to='/'
@@ -142,7 +143,7 @@ const SearchBar = () => {
 const HeaderIcon = ({ icon }) => {
     return (
         <a
-            className="p-2 flex items-center bg-gray-700 rounded-full font-bold text-white ml-1 hover:bg-gray-800"
+            className="p-2 flex items-center bg-gray-700 w-10 rounded-full font-bold text-white ml-1 hover:bg-gray-600"
             href="#pablo"
         >
             {icon}
@@ -175,16 +176,23 @@ const Dropdown = ({ color }) => {
         type: 'SET_USER',
         user: null
     })
+    axios.post('http://localhost:8080/api/v1/logout',{email:JSON.parse(user).email}).then(function (response) {               
+        console.log(response.data);
+    })
+    .catch(function (error) {
+        console.log(error.message);
+    });
     localStorage.removeItem('token')
+    localStorage.removeItem('user')
   } 
 
   return (
     <>
-      <div className="flex flex-wrap">
+      <div className="sticky top-0 flex flex-wrap">
         <div className="w-full sm:w-6/12 md:w-4/12 px-4">
           <div className="relative inline-flex align-middle w-full">
             <span
-                className="p-2 flex items-center bg-gray-700 rounded-full font-bold text-white ml-1 hover:bg-gray-800"
+                className="p-2 flex items-center bg-gray-700 rounded-full font-bold text-white ml-1 hover:bg-gray-600"
                 style={{ transition: "all .15s ease" }}
                 type="button"
                 ref={btnDropdownRef}
@@ -202,27 +210,27 @@ const Dropdown = ({ color }) => {
               className={(dropdownPopoverShow ? "block " : "hidden ")+"text-base z-50 bg-gray-700 mr-8 text-white float-left py-2 list-none text-left rounded shadow-lg mt-1"}
               style={{minWidth:'8rem'}}
             >
-              <Link to='/profile'
-                className="text-sm flex align-center py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent hover:bg-gray-800"               
+              <Link to='/userhome'
+                className="text-sm flex align-center py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent hover:bg-gray-600"               
               >
                   <AccountCircleSharpIcon/>
                     {JSON.parse(user).username}
               </Link>
-              <Link to='/help'
-                className="text-sm py-2 px-4 flex align-center font-normal block w-full whitespace-no-wrap bg-transparent hover:bg-gray-800"
+              <Link to='/chats'
+                className="text-sm py-2 px-4 flex align-center font-normal block w-full whitespace-no-wrap bg-transparent hover:bg-gray-600"
               >
                 <HelpIcon/>  
                 Help
               </Link>
               <Link to='/settings'
-                className="text-sm py-2 px-4 flex align-center font-normal block w-full whitespace-no-wrap bg-transparent hover:bg-gray-800"
+                className="text-sm py-2 px-4 flex align-center font-normal block w-full whitespace-no-wrap bg-transparent hover:bg-gray-600"
               >
                 <SettingsIcon/>
                 Settings
               </Link>
-              <div className="h-0 my-2 border flex align-center border-solid border-t-0 border-gray-900 opacity-25 hover:bg-gray-800" />
+              <div className="h-0 my-2 border flex align-center border-solid border-t-0 border-gray-900 opacity-25 hover:bg-gray-600" />
               <span
-                className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent hover:bg-gray-800"                
+                className="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent hover:bg-gray-600"                
                 onClick={logout}
               >
                 <ExitToAppIcon/>

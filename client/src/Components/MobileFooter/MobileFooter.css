@@ -1,0 +1,11 @@
+.mobilefooter{
+    display: flex;
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 2rem;
+    width: 100%;
+}

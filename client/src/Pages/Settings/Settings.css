@@ -1,0 +1,14 @@
+.settings{
+    display: flex;
+    min-height:100vh ;
+}
+.settings__picture{
+    flex: 0.5;
+}
+.settings__form{
+    flex: 0.5;
+}
+.image__div{
+    margin-left: auto;
+    margin-right: auto;
+}

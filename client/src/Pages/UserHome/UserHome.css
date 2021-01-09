@@ -1,0 +1,14 @@
+@media screen and (max-width: 700px) {
+    .userhome__desktop{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .userhome__mobile {
+      display: none;
+    }
+}
+.desktophome__body{
+    flex: 0.8;
+}

@@ -1,0 +1,5 @@
+.profiles{
+    display: flex;
+    flex: 0.8;
+    min-height: 100vh;
+}

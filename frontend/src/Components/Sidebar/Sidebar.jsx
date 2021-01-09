@@ -38,7 +38,7 @@ function Sidebar() {
     }
 
     return (
-        <div className="sidebar">
+        <div className="sidebar z-40">
             <div className="sidebar__top">
                 <h3>Bako's App</h3>
                 <ExpandMoreIcon />

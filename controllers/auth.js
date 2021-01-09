@@ -29,7 +29,7 @@ exports.registerUser = async (req, res) => {
             if (results.rows.length > 0) {
                 res.status(403).json({ error: 'Account Already Exists' })
             } else {
-                const newUser = db.query('INSERT INTO users (password, email, username) VALUES($1, $2, $3)', [hashPassword, email, username]);
+                const newUser = db.query('INSERT INTO users (password, email, username, status) VALUES($1, $2, $3, $4)', [hashPassword, email, username,'offline']);
                 res.status(200).json({ message: 'Account Created!', user: newUser })
             }
         }
@@ -61,6 +61,7 @@ exports.loginUser = async (req, res) => {
             if (bcrypt.compareSync(password, hashPassword)) {
                 // setting access token
                 const accessToken = await jwt.sign({ username: _user.rows[0].username, email: _user.rows[0].email }, process.env.JWT_SECRET);
+                await db.query("UPDATE users SET status = ($1) WHERE email = $2",['online',email])
                 res.status(200).json({
                     accessToken,
                     user: {
@@ -69,7 +70,7 @@ exports.loginUser = async (req, res) => {
                         email: _user.rows[0].email,
                         firstname:  _user.rows[0].firstname,
                         lastname: _user.rows[0].lastname,
-                        status: true,
+                        status: _user.rows[0].status,
                         phonenumber: _user.rows[0].phonenumber,
                         bio: _user.rows[0].bio,
                     }
@@ -86,4 +87,16 @@ exports.loginUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
-}    
+}
+
+//logout route 
+exports.logoutUser =async (req,res)=>{
+    try {
+        const {email} = req.body
+        const _user = await db.query('SELECT * FROM users WHERE email = $1', [email])
+        await db.query("UPDATE users SET status = ($1) WHERE email = $2",['offline',email])
+        await res.json({userStatus:_user.rows[0].status})
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}

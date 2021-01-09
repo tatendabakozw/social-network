@@ -1,0 +1,198 @@
+social network work progess:
+	*-create name and logo
+	*-create navbar
+		-logo
+		-search
+		-create server
+		-messages
+		-notificaions
+		-account
+	*-create home page
+		-illustrations
+		-some info about social
+		- links to login and register
+	*-create signin and login pages
+		-unique colors
+	*-logout user and show that status is offline
+		-both backend and frontend
+	*-private routes
+		-set private routes
+		-prevent auto reload
+	*-show username somewhere
+	-create settings page
+		-add profile picture
+		-change username
+		-change password
+		-change bio
+		-logout
+		-delete account
+	-create user page 
+		-channels
+		-following
+		-posts
+		-servers
+
+TABLES NEEDED:
+	-USER TABLE	
+		-userid -- uuid (varchar)
+		-first name --varchar(255)
+		-phone number
+		-email --varchar(255)
+		-last name --varchar(255)
+		-bio
+		-password --varchar(255)
+		-username --varchar(255)
+		-profile picture --blob 
+		-channel_id --varchar(255) --uuid/v4
+		-status -- boolean (either online or offline)
+		-created at -timestamp
+		-updated at -timestamp
+		-address -- geolocation (create a geocoder) --{longitude and latitude}
+	-SERVER TABLE
+		-server_id
+		-server_owner -- user email (because it is uniques in each entry)
+		-server name
+		-server rules
+		-server picture
+		-status - boolean (eiter its turned on or off by the owner)
+		-created at 
+		-updated at
+	-CHANNEL TABLE
+		-channel name
+		-channel server
+		-channel id
+		-channel picture
+		-channel description
+		-channel rules
+		-status -- boolean (either channel is on or off)
+	-MESSAGE
+		-message id
+		-message body
+		-sender -- user id
+		-message__channel
+		-message time	
+		-message picture
+
+frontend pages
+	-chats --on bottom
+		-shows chats of users
+		-message
+			-shows current chat page
+	-home page --on bottom
+		-shows featured channels
+		-shows featured stores
+			-channels
+				-shows chats on that channel
+	-notification --on bottom
+		-shows any current notifications related to a user
+		-messaged recieved
+		-items bought
+	-profile page
+		-shows info about selected user
+		-can be settings page of current user
+	-store
+		-shows others catalogues
+		-shows current users catalogue
+	-settings 
+		-user can change anything about account here
+
+
+
+import React from 'react'
+import MobileFooter from '../../Components/MobileFooter/MobileFooter'
+import Sidebar from '../../Components/Sidebar/Sidebar'
+import './Profile.css'
+import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import games from '../../Images/games.jpg'
+import techniology from '../../Images/technology.jpg'
+import ContactsIcon from '@material-ui/icons/Contacts';
+
+function Profile() {
+    return (
+        <div className="profile bg-gray-700 flex">
+            <div className="home__mobilePlatform">
+                <Mobilehome />
+            </div>
+            <div className="home__desktopPlaform">
+                <Desktophome />
+            </div>
+        </div>
+    )
+}
+
+//mobile home page
+const Mobilehome = () => {
+    return (
+        <div className="mobilehome pt-4">
+            <div className="mobilehome__body flex flex-col px-3">
+                <div className="mobilehome__search flex self-center mb-8 mt-4 p-2 bg-gray-800 rounded-md items-center w-5/6">
+                    <SearchRoundedIcon className="m-2 text-gray-200" />
+                    <input type="text" placeholder="Search Channels" className="w-full p-2 rounded-md bg-transparent" />
+                </div>
+                <div className="mobile__homeChannels flex flex-col">
+                    <span className="flex justify-between text-sm mb-4 text-gray-200 text-left" >
+                        <p>Popular Channels</p>
+                        <p className="text-yellow-700">See All</p>
+                    </span>
+                    <div className="homehome__channelsContainer mb-8 flex overflow-scroll">
+                        <HomeChannel picture={games} />
+                        <HomeChannel picture={techniology} />
+                        <HomeChannel picture={games} />
+                    </div>
+                    <div className="homehome__Catalougue">
+                        <span className="flex justify-between text-sm mb-4 text-gray-200 text-left" >
+                            <p>Popular Catalogues</p>
+                            <p className="text-yellow-700">See All</p>
+                        </span>
+                        <div className="homehome__cataloguesContainer p-1">
+                            <HomeCatalogues />
+                            <HomeCatalogues />
+                            <HomeCatalogues />
+                            <HomeCatalogues />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <MobileFooter />
+        </div>
+    )
+}
+
+const HomeChannel = ({ picture }) => {
+    return (
+        <div className="homechannel w-32 my-2 mx-3 rounded-md h-38 flex items-center overflow-hidden bg-gray-300 ">
+            <img src={picture} alt="games" className="rounded-md self-center" style={{ width: '15rem' }} />
+        </div>
+    )
+}
+
+//home catalogues
+const HomeCatalogues = () => {
+    return (
+        <div className="home__catalogues flex mb-4">
+            <div className="catalogue__image w-38 overflow-hidden">
+                <img src={games} alt="game__image" style={{ width: '8rem' }} />
+            </div>
+            <div className="catalogues__description py-2 px-2 flex flex-col text-gray-200 justify-between">
+                <p className="font-bold">Gamers World</p>
+                <p>We sell cheap games and consoles on the go</p>
+                <span className="flex">
+                    <ContactsIcon fontSize="small" />
+                    <p>+263771445411</p>
+                </span>
+            </div>
+        </div>
+    )
+}
+
+//desktop home page
+const Desktophome = () => {
+    return (
+        <div className="desktophome  bg-gray-700">
+            <Sidebar />
+            <homes />
+        </div>
+    )
+}
+
+export default Profile

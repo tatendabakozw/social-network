@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
+import googleImage from '../../Images/google.svg'
+import githubImage from '../../Images/github.svg'
+import registerBackground from '../../Images/register_bg_2.png'
 
 function Register() {
 
@@ -30,78 +33,167 @@ function Register() {
 
 
     return (
-        <div>
-            {/* component */}
-            <div className="grid min-h-screen place-items-center">
-                <div className="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12 shadow">
-                    {/* {!message ? (<SuccessMessage success={message}/>): null}
-                    {!loginError ? (<ErrorMessage error={loginError}/>): null} */}
-                <p className="font-2xl">Register For A Free Account</p>
-                    <button type="submit" className="w-full py-3 px-1 mt-6 font-medium tracking-widest text-white uppercase bg-red-700 shadow-lg focus:outline-none hover:bg-red-900 hover:shadow-none">
-                        Register With Google
-                    </button>
-                    <button type="submit" className="w-full py-3 mt-6 mb-3 font-medium tracking-widest text-white uppercase bg-blue-700 shadow-lg focus:outline-none hover:bg-blue-900 hover:shadow-none">
-                        Register With Facebook
-                    </button>
-                    <hr />
-                    <p>Or</p>
-                    <form className="mt-6" onSubmit={handleSubmit}>
-                        <label htmlFor="email" className="block mt-2 text-xs font-semibold text-gray-600 uppercase">E-mail</label>
-                        <input
-                            onChange={e => setEmail(e.target.value)}
-                            id="email"
-                            value={email}
-                            type="email"
-                            name="email"
-                            placeholder="john@mail.com"
-                            autoComplete="email"
-                            className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
-                            required
-                        />
-                        <label htmlFor="username" className="block mt-2 text-xs font-semibold text-gray-600 uppercase">Username</label>
-                        <input
-                            onChange={e => setUsername(e.target.value)}
-                            id="username"
-                            value={username}
-                            type="username"
-                            name="username"
-                            placeholder="Choose Username"
-                            className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
-                            required
-                        />
-                        <label htmlFor="password" className="block mt-2 text-xs font-semibold text-gray-600 uppercase">Password</label>
-                        <input
-                            onChange={e => setPassword(e.target.value)}
-                            id="password"
-                            type="password"
-                            value={password}
-                            name="password"
-                            placeholder="********"
-                            autoComplete="new-password"
-                            className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
-                            required
-                        />
-                        <label htmlFor="password-confirm" className="block mt-2 text-xs font-semibold text-gray-600 uppercase">Confirm password</label>
-                        <input
-                            onChange={e => setConfirmPassword(e.target.value)}
-                            id="password-confirm"
-                            type="password"
-                            value={confirmPassword}
-                            name="confirmPassword"
-                            placeholder="********"
-                            autoComplete="new-password"
-                            className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
-                            required
-                        />
-                        <button type="submit" className="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
-                            Sign up
+        <>
+        <main>
+          <section className=" w-full h-full bg-gray-800" 
+          style={{
+            backgroundImage:`url(${registerBackground})`,
+            backgroundSize: "100%",
+            backgroundRepeat: "no-repeat"
+          }}
+          >
+            <div
+              className="top-0 w-full h-full"
+              
+            ></div>
+            <div className="container mx-auto px-4 h-full">
+              <div className="flex content-center items-center justify-center h-full">
+                <div className="w-full lg:w-4/12 px-4">
+                  <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
+                    <div className="rounded-t mb-0 px-6 py-6">
+                      <div className="text-center mb-3">
+                        <h6 className="text-gray-600 text-sm font-bold">
+                          Sign Un With
+                        </h6>
+                      </div>
+                      <div className="btn-wrapper text-center">
+                        <button
+                          className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
+                          type="button"
+                          style={{ transition: "all .15s ease" }}
+                        >
+                          <img
+                            alt="..."
+                            className="w-5 mr-1"
+                            src={githubImage}
+                          />
+                          Github
                         </button>
-                        <Link to='/login' className="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">Already registered?</Link>
-                    </form>
-                </div>
-            </div>
+                        <button
+                          className="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
+                          type="button"
+                          style={{ transition: "all .15s ease" }}
+                        >
+                          <img
+                            alt="..."
+                            className="w-5 mr-1"
+                            src={googleImage}
+                          />
+                          Google
+                        </button>
+                      </div>
+                      <hr className="mt-6 border-b-1 border-gray-400" />
+                    </div>
+                    <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+                      <div className="text-gray-500 text-center mb-3 font-bold">
+                        <small>Or sign un with credentials</small>
+                      </div>
 
-        </div>
+                      {/* the sign up form */}
+                      <form onSubmit={handleSubmit}>
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Email
+                          </label>
+                          <input
+                            type="email"
+                            className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+                            placeholder="Email"
+                            style={{ transition: "all .15s ease" }}
+                            onChange={e => setEmail(e.target.value)}
+                          />
+                        </div>
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Username
+                          </label>
+                          <input
+                            type="text"
+                            className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+                            placeholder="Username"
+                            style={{ transition: "all .15s ease" }}
+                            onChange={e => setUsername(e.target.value)}
+                          />
+                        </div>  
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Password
+                          </label>
+                          <input
+                            type="password"
+                            className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+                            placeholder="Password"
+                            style={{ transition: "all .15s ease" }}
+                            onChange={e => setPassword(e.target.value)}
+                          />
+                        </div>
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-gray-700 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Confirm Password
+                          </label>
+                          <input
+                            type="password"
+                            className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+                            placeholder="Confirm Password"
+                            style={{ transition: "all .15s ease" }}
+                            onChange={e => setConfirmPassword(e.target.value)}
+                          />
+                        </div>  
+                        <div className="text-center mt-6">
+                          <button
+                            className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                            type="submit"
+                            style={{ transition: "all .15s ease" }}
+                          >
+                            Register
+                          </button>
+                        </div>
+                        <div className="flex flex-wrap mt-6">
+                    <div className="w-1/2">
+                      <div>
+                          <label className="inline-flex items-center cursor-pointer">
+                            <input
+                              id="customCheckLogin"
+                              type="checkbox"
+                              className="form-checkbox text-gray-800 ml-1 w-5 h-5"
+                              style={{ transition: "all .15s ease" }}
+                            />
+                            <span className="ml-2 text-gray-700">
+                              Agree to our terms?
+                            </span>
+                          </label>
+                        </div>
+                    </div>
+                    <div className="w-1/2 text-right">
+                      <Link to='/login'
+                        className="text-gray-700"
+                      >
+                        <small>Already Registered?</small>
+                      </Link>
+                    </div>
+                  </div>
+                      </form>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </>
     )
 }
 

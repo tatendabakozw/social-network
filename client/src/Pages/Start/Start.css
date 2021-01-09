@@ -1,11 +1,11 @@
-.home{
+.start{
     display: flex;
     min-height: 100vh;
     
 }
-.home__sayings{
+.start__sayings{
     flex: 0.5;
 }
-.home__illustrations{
+.start__illustrations{
     flex: 0.5;
 }
